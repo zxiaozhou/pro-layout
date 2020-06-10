@@ -109,29 +109,15 @@ export default {
 
         hideHintAlert: false,
         hideCopyButton: false
-      },
-      // 是否手机模式
-      isMobile: false
+      }
     }
   },
   render (h) {
-    const handleMediaQuery = (val) => {
-      this.query = val
-      if (this.isMobile && !val['screen-xs']) {
-        this.isMobile = false
-        return
-      }
-      if (!this.isMobile && val['screen-xs']) {
-        this.isMobile = true
-        this.collapsed = false
-      }
-    }
+    const menus = asyncRouterMap.find(item => item.path === '/').children
+
     const handleCollapse = (val) => {
       this.collapsed = val
     }
-
-    const menus = asyncRouterMap.find(item => item.path === '/').children
-
     const handleSettingChange = ({ type, value, ...args }) => {
       this.settings[type] = value
 
@@ -162,8 +148,6 @@ export default {
         ...this.settings,
         menus,
         collapsed: this.collapsed,
-        mediaQuery: this.query,
-        handleMediaQuery,
         handleCollapse,
         isMobile: this.isMobile,
         // custom render

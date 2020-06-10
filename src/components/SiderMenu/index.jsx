@@ -13,27 +13,26 @@ const SiderMenuWrapper = {
   render (h) {
     const {
       layout,
-      isMobile,
       collapsed
     } = this
     const isTopMenu = layout === 'topmenu'
     const handleCollapse = (e) => {
       this.$emit('collapse', true)
     }
-    return isMobile ? (
+    return this.isMobile ? (
       <Drawer
         class="ant-pro-sider-menu"
         visible={!collapsed}
         placement="left"
         maskClosable
-        getContainer={null}
+        getContainer={undefined}
         onClose={handleCollapse}
         bodyStyle={{
           padding: 0,
           height: '100vh'
         }}
       >
-        <SiderMenu {...{ props: {...this.$props, collapsed: isMobile ? false : collapsed} }} />
+        <SiderMenu {...{ props: {...this.$props, collapsed: this.isMobile ? false : collapsed} }} />
       </Drawer>
     ) : !isTopMenu && (
       <SiderMenu class="ant-pro-sider-menu" {...{ props: this.$props }} />

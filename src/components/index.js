@@ -1,6 +1,6 @@
 import RouteMenu from './RouteMenu'
 import SiderMenuWrapper, { SiderMenu, SiderMenuProps } from './SiderMenu'
-import PageHeaderWrapper from './PageHeaderWrapper'
+import PageHeaderWrapper from './PageContainer'
 import GlobalFooter from './GlobalFooter'
 import VueFragment from './Fragment'
 

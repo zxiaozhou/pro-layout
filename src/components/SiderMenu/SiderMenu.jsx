@@ -1,7 +1,13 @@
 import './index.less'
 
 import PropTypes from 'ant-design-vue/es/_util/vue-types'
-import { Layout } from 'ant-design-vue'
+import { Layout, Menu, Icon } from 'ant-design-vue'
+
+const {
+  Item: MenuItem,
+  SubMenu
+} = Menu
+
 import BaseMenu from '../RouteMenu'
 
 const { Sider } = Layout
@@ -21,7 +27,7 @@ export const SiderMenuProps = {
   fixSiderbar: PropTypes.bool,
   logo: PropTypes.any,
   title: PropTypes.string.def(''),
-  menuHeaderRender: PropTypes.func,
+  menuHeaderRender: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
 }
 
 export const defaultRenderLogo = (h, logo) => {
@@ -40,7 +46,7 @@ export const defaultRenderLogoAntTitle = (h, props) => {
     title,
     menuHeaderRender
   } = props
-
+  console.log('defaultRenderLogoAntTitle.menuHeaderRender', menuHeaderRender)
   if (menuHeaderRender === false) {
     return null
   }
@@ -57,6 +63,14 @@ export const defaultRenderLogoAntTitle = (h, props) => {
     </span>
   )
 }
+
+export const defaultRenderMenuFooter = (h, props) => {
+  return null
+}
+
+const defaultRenderCollapsedButton = (h, collapsed) => (
+  <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'}/>
+)
 
 const SiderMenu = {
   name: 'SiderMenu',
@@ -92,12 +106,19 @@ const SiderMenu = {
     const headerDom = defaultRenderLogoAntTitle(h, {
       logo, title, menuHeaderRender, collapsed
     })
+    console.log('headerDom', headerDom)
+    const footerDom = defaultRenderMenuFooter(h, {
+      ...this.$props
+    })
+    const collapsedButtonRender = defaultRenderCollapsedButton
+    const isMobile = false
 
     return (<Sider
       class={siderCls}
       breakpoint={'lg'}
       trigger={null}
       width={siderWidth}
+      collapsedWidth={48}
       theme={theme}
       collapsible={collapsible}
       collapsed={collapsed}
@@ -115,6 +136,30 @@ const SiderMenu = {
         </div>
       )}
       <BaseMenu collapsed={collapsed} menus={menus} mode={mode} theme={theme} i18nRender={i18nRender} />
+      <div class="ant-pro-sider-links">
+        <Menu
+          class={'ant-pro-sider-link-menu'}
+          theme={theme}
+          inlineIndent={16}
+          selectedKeys={[]}
+          openKeys={[]}
+          mode="inline"
+        >
+          {collapsedButtonRender && !isMobile && (
+            <Menu.Item
+              class={`ant-pro-sider-collapsed-button`}
+              title={false}
+              onClick={() => {
+                if (handleCollapse) {
+                  handleCollapse(!collapsed)
+                }
+              }}
+            >
+              {collapsedButtonRender(h, collapsed)}
+            </Menu.Item>
+          )}
+        </Menu>
+      </div>
     </Sider>)
   }
 }

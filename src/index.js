@@ -1,6 +1,6 @@
 import BasicLayout, { BasicLayoutProps } from './BasicLayout'
 import BlockLayout from './BlockLayout'
-import PageHeaderWrapper from './components/PageHeaderWrapper'
+import PageContainer from './components/PageContainer'
 import SiderMenuWrapper from './components/SiderMenu'
 import GlobalFooter from './components/GlobalFooter'
 import SettingDrawer from './components/SettingDrawer'
@@ -9,7 +9,9 @@ import { updateTheme } from './utils/dynamicTheme'
 
 export {
   GlobalFooter,
-  PageHeaderWrapper,
+  // old export name
+  PageContainer as PageHeaderWrapper,
+  PageContainer,
   SiderMenuWrapper,
   BlockLayout,
   SettingDrawer,

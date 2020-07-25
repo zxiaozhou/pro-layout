@@ -9,10 +9,6 @@
     @back="() => {
       console.log('PageHeader::@back')
     }"
-    :back="() => {
-      // 自定义 back，不会覆盖 onBack 事件
-      console.log('PageHeader::.back')
-    }"
   >
     <template v-slot:content>
       <span>{{ $t('pages.form.basicform.content') }}</span>

@@ -16,7 +16,7 @@ const PageHeaderTabConfig = {
   tabChange: PropTypes.func,
 }
 
-const PageHeaderWrapperProps = {
+const PageContainerProps = {
   ...PageHeaderTabConfig,
   ...PageHeaderProps,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -127,9 +127,9 @@ const defaultPageHeaderRender = (h, props, pageMeta, i18nRender) => {
   // return
 }
 
-const PageHeaderWrapper = {
-  name: 'PageHeaderWrapper',
-  props: PageHeaderWrapperProps,
+const PageContainer = {
+  name: 'PageContainer',
+  props: PageContainerProps,
   inject: ['locale', 'contentWidth', 'breadcrumbRender'],
   render(h) {
     const { $route, $listeners } = this
@@ -210,4 +210,10 @@ const PageHeaderWrapper = {
   },
 }
 
-export default PageHeaderWrapper
+PageContainer.install = function (Vue) {
+  Vue.component(PageContainer.name, PageContainer)
+  // old component name
+  Vue.component('page-header-wrapper', PageContainer)
+}
+
+export default PageContainer

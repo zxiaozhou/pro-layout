@@ -5,7 +5,6 @@ import { asyncRouterMap } from '../config/router.config.js'
 import { i18nRender } from '../locales'
 import ProLayout, { GlobalFooter, SettingDrawer } from '@ant-design-vue/pro-layout'
 import SelectLang from '../components/SelectLang'
-import LogoSvg from '../assets/logo.svg?inline'
 // import defaultSettings from '@config/defaultSettings'
 
 const Account = {
@@ -48,11 +47,11 @@ const Account = {
 }
 
 // render logo and title
+// eslint-disable-next-line no-unused-vars
 const menuHeaderRender = (h, logo, title) => {
   return (
-    <div>
-      <LogoSvg />
-      <h1>Ant Design Pro</h1>
+    <div class={'abc'}>
+      <h1>Example Layout</h1>
     </div>
   )
 }
@@ -173,9 +172,7 @@ export default {
         i18nRender,
         menuHeaderRender,
         breadcrumbRender,
-
-        logo: LogoSvg,
-        title: 'Ant Design Pro'
+        siderWidth: 208
       }
     }
 

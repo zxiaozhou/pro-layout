@@ -2,7 +2,9 @@ import './BasicLayout.less'
 
 import PropTypes from 'ant-design-vue/es/_util/vue-types'
 
-import { Layout } from 'ant-design-vue'
+import Base from 'ant-design-vue/lib/base'
+import Portal from 'ant-design-vue/lib/_util/Portal'
+import Layout from 'ant-design-vue/lib/layout'
 import { ContainerQuery } from 'vue-container-query'
 import { SiderMenuWrapper, GlobalFooter } from './components'
 import { getComponentFromProp, isFun } from './utils/util'
@@ -108,6 +110,7 @@ const BasicLayout = {
       breadcrumbRender
     }
 
+    console.log('menuHeaderRender', menuHeaderRender)
     return (
       <ConfigProvider i18nRender={i18nRender} contentWidth={contentWidth} breadcrumbRender={breadcrumbRender}>
         <ContainerQuery query={MediaQueryEnum} onChange={handleMediaQuery}>
@@ -155,6 +158,12 @@ const BasicLayout = {
       </ConfigProvider>
     )
   }
+}
+
+BasicLayout.install = function (Vue) {
+  Vue.use(Base)
+  Vue.use(Portal)
+  Vue.component(BasicLayout.name, BasicLayout)
 }
 
 export default BasicLayout

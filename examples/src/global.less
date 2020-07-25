@@ -30,6 +30,17 @@ ol {
   list-style: none;
 }
 
+.ant-pro-sider-menu {
+  /deep/ .ant-menu-inline-collapsed > .ant-menu-item,
+  .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0 16px !important;
+  }
+
+  /deep/ .ant-menu-inline-collapsed {
+    width: 48px;
+  }
+}
+
 @media (max-width: @screen-xs) {
   .ant-table {
     width: 100%;

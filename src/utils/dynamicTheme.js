@@ -1,6 +1,7 @@
 import client from 'webpack-theme-color-replacer/client'
 import generate from '@ant-design/colors/lib/generate'
-import { message } from 'ant-design-vue'
+import message from 'ant-design-vue/lib/message'
+import 'ant-design-vue/lib/message/style'
 
 export const themeColor = {
   getAntdSerials (color) {
